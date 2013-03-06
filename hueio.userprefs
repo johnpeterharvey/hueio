@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="hueio/Hueio.cs">
+    <Files>
+      <File FileName="hueio/Hueio.cs" Line="26" Column="8" />
+      <File FileName="hueio/Lamp.cs" Line="20" Column="18" />
+      <File FileName="hueio/HSVRGB.cs" Line="9" Column="17" />
+      <File FileName="hueio/Messaging.cs" Line="25" Column="131" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
