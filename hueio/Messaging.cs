@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace hueio
 {
@@ -49,6 +50,12 @@ namespace hueio
             webClient.BaseAddress = "http://" + bridgeIP + "/api/" + username + "/";
             return webClient.DownloadString(webClient.BaseAddress);
         }
-
+		
+		public List<Lamp> DownloadLampList()
+		{
+			String jsonString = DownloadState();
+			JsonLampList lampList = JsonConvert.DeserializeObject<JsonLampList>(jsonString);
+            return lampList.ConvertToHueLamps();
+		}
     }
 }
