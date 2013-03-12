@@ -12,13 +12,36 @@ namespace hueio
     class Messaging
     {
         private String bridgeIP;
+		private String bridgeMAC;
         private String username;
         
-        public Messaging(string bridgeIP, string username)
+        public Messaging(string bridgeIP, string bridgeMAC)
         {
             this.bridgeIP = bridgeIP;
-            this.username = username;
+            this.bridgeMAC = bridgeMAC;
         }
+		
+		public void SetUsername(String username)
+		{
+			this.username = username;
+		}
+		
+		#region Getters for constructor config
+		public String GetBridgeIP()
+		{
+			return this.bridgeIP;
+		}
+		
+		public String GetBridgeMAC()
+		{
+			return this.bridgeMAC;
+		}
+
+		public String GetUserName()
+		{
+			return this.username;
+		}
+		#endregion
 
         public void SendMessage(Lamp lampState)
         {
@@ -54,8 +77,13 @@ namespace hueio
 		public List<Lamp> DownloadLampList()
 		{
 			String jsonString = DownloadState();
-			JsonLampList lampList = JsonConvert.DeserializeObject<JsonLampList>(jsonString);
-            return lampList.ConvertToHueLamps();
+			
+			if (jsonString != null && jsonString.Length != 0) {
+				JsonLampList lampList = JsonConvert.DeserializeObject<JsonLampList>(jsonString);
+            	return lampList.ConvertToHueLamps();
+			} else {
+				return new List<Lamp>();
+			}
 		}
     }
 }

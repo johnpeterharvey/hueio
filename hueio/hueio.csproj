@@ -44,6 +44,13 @@
     <Compile Include="Messaging.cs" />
     <Compile Include="JsonLamp.cs" />
     <Compile Include="JsonLampList.cs" />
+    <Compile Include="UPnPConfigFetcher.cs" />
+    <Compile Include="UPnPConfig.cs" />
+    <Compile Include="Exceptions\BridgeDetectionFailedException.cs" />
+    <Compile Include="Exceptions\UsernameNullException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
 </Project>

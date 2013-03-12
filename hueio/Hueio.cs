@@ -6,29 +6,69 @@ namespace hueio
 {
 	public class Hueio
 	{
-		private IPAddress bridgeIP;
-		private String usernameKey;
-		
 		private Messaging messaging;
 
 		#region Getters for constructor config
-		public IPAddress GetBridgeIP()
+		public String GetBridgeIP()
 		{
-			return this.bridgeIP;
+			return messaging.GetBridgeIP();
+		}
+		
+		public String GetBridgeMAC()
+		{
+			return messaging.GetBridgeMAC();
 		}
 
-		public String GetUserKey()
+		public String GetUserName()
 		{
-			return this.usernameKey;
+			return messaging.GetUserName();
 		}
 		#endregion
 		
-		public Hueio (IPAddress bridgeIP, String usernameKey)
+		#region Constructors
+		//Detect IP from hue page
+		public Hueio()
 		{
-			this.bridgeIP = bridgeIP;
-			this.usernameKey = usernameKey;
+			//Request the bridge IP and other details from the hue upnp interface
+			UPnPConfig bridgeConfig = UPnPConfigFetcher.GetBridgeInfo();
 			
-			this.messaging = new Messaging(this.bridgeIP.ToString(), this.usernameKey);
+			if (bridgeConfig != null)
+			{
+				this(bridgeConfig.internalipaddress, bridgeConfig.macaddress);
+			} else {
+				throw new BridgeDetectionFailedException();
+			}
+		}
+		
+		//Manual IP configuration
+		public Hueio(IPAddress bridgeIP)
+		{
+			if (bridgeIP != null)
+			{
+				this(bridgeIP.ToString(), null);
+			} else {
+				//If the user gave a null IP, try autodetection
+				this();
+			}
+		}
+		
+		private Hueio(String bridgeIP, String bridgeMAC)
+		{
+			messaging = new Messaging(bridgeIP, bridgeMAC);
+		}
+		#endregion
+		
+		//Register a new user with the bridge
+		//Requires the Link button to be pressed before calling
+		public void AddUserToBridge(String username)
+		{
+			//TODO
+		}
+		
+		//Set the username to authenticate with
+		public void SetUsername(String username)
+		{
+			messaging.SetUsername(username);
 		}
 		
 		//Download the current state of lamps from the hue bridge
