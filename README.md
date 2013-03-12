@@ -33,3 +33,7 @@ hueio.ChangeAllLampStates(new Hueio.LampStateChange((Lamp l) => l.state = true))
 ---
 
 Still being worked on, improving over time. If you've got any suggestions, let me know.
+
+---
+
+See http://developers.meethue.com/ for the Philips documentation.
