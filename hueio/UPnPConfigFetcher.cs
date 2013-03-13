@@ -16,6 +16,7 @@ namespace hueio
 			{
 				return null;
 			}
+			json = json.TrimStart('[').TrimEnd(']');
 			
 			return JsonConvert.DeserializeObject<UPnPConfig>(json);
 		}

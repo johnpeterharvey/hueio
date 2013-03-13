@@ -29,15 +29,7 @@ namespace hueio
 		//Detect IP from hue page
 		public Hueio()
 		{
-			//Request the bridge IP and other details from the hue upnp interface
-			UPnPConfig bridgeConfig = UPnPConfigFetcher.GetBridgeInfo();
-			
-			if (bridgeConfig != null)
-			{
-				this(bridgeConfig.internalipaddress, bridgeConfig.macaddress);
-			} else {
-				throw new BridgeDetectionFailedException();
-			}
+			AttemptAutoConfig();
 		}
 		
 		//Manual IP configuration
@@ -45,14 +37,27 @@ namespace hueio
 		{
 			if (bridgeIP != null)
 			{
-				this(bridgeIP.ToString(), null);
+				InitializeMessaging(bridgeIP.ToString(), null);
 			} else {
 				//If the user gave a null IP, try autodetection
-				this();
+				AttemptAutoConfig();
 			}
 		}
 		
-		private Hueio(String bridgeIP, String bridgeMAC)
+		private void AttemptAutoConfig()
+		{
+			//Request the bridge IP and other details from the hue upnp interface
+			UPnPConfig bridgeConfig = UPnPConfigFetcher.GetBridgeInfo();
+			
+			if (bridgeConfig != null)
+			{
+				InitializeMessaging(bridgeConfig.internalipaddress, bridgeConfig.macaddress);
+			} else {
+				throw new BridgeDetectionFailedException();
+			}
+		}
+		
+		private void InitializeMessaging(String bridgeIP, String bridgeMAC)
 		{
 			messaging = new Messaging(bridgeIP, bridgeMAC);
 		}

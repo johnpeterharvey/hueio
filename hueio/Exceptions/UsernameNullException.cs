@@ -2,7 +2,7 @@ using System;
 
 namespace hueio
 {
-	public class UsernameNullException
+	public class UsernameNullException : ApplicationException
 	{
 		public UsernameNullException ()
 		{

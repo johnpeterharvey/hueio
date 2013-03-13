@@ -61,10 +61,18 @@ namespace hueio
 
         public void SendMessage(List<Lamp> lampStates)
         {
+			List<Thread> spawned = new List<Thread>();
             foreach (Lamp lamp in lampStates)
             {
-                new Thread(new ParameterizedThreadStart(SendMessage)).Start(lamp);
+				Thread lampchange = new Thread(new ParameterizedThreadStart(SendMessage));
+                spawned.Add(lampchange);
+				lampchange.Start(lamp);
             }
+			
+			foreach (Thread rejoin in spawned)	
+			{
+				rejoin.Join();
+			}
         }
 
         public String DownloadState()

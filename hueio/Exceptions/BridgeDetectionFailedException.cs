@@ -2,7 +2,7 @@ using System;
 
 namespace hueio
 {
-	public class BridgeDetectionFailedException
+	public class BridgeDetectionFailedException : ApplicationException
 	{
 		public BridgeDetectionFailedException ()
 		{
