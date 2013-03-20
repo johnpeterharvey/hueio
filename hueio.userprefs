@@ -8,7 +8,8 @@
       <File FileName="hueio/UPnPConfigFetcher.cs" Line="24" Column="2" />
       <File FileName="hueio/Hueio.cs" Line="95" Column="14" />
       <File FileName="hueio/JsonLampList.cs" Line="18" Column="14" />
-      <File FileName="hueio/Messaging.cs" Line="72" Column="17" />
+      <File FileName="hueio/Messaging.cs" Line="11" Column="2" />
+      <File FileName="test/Main.cs" Line="23" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

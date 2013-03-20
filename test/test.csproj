@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8AFC719E-9954-4F9F-83A3-7D3BEA971691}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>hueio</RootNamespace>
-    <AssemblyName>hueio</AssemblyName>
+    <ProjectGuid>{0F07CCEA-BC92-4576-905A-2DA6DA69EA7C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>test</RootNamespace>
+    <AssemblyName>test</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -18,7 +18,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
+    <Externalconsole>True</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -26,31 +26,20 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
+    <Externalconsole>True</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Hueio.cs" />
-    <Compile Include="Lamp.cs" />
-    <Compile Include="HSVRGB.cs" />
-    <Compile Include="Messaging.cs" />
-    <Compile Include="JsonLamp.cs" />
-    <Compile Include="JsonLampList.cs" />
-    <Compile Include="UPnPConfigFetcher.cs" />
-    <Compile Include="UPnPConfig.cs" />
-    <Compile Include="Exceptions\BridgeDetectionFailedException.cs" />
-    <Compile Include="Exceptions\UsernameNullException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Exceptions\" />
+    <ProjectReference Include="..\hueio\hueio.csproj">
+      <Project>{8AFC719E-9954-4F9F-83A3-7D3BEA971691}</Project>
+      <Name>hueio</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
